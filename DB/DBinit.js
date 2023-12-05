@@ -80,4 +80,5 @@ connection.connect((err) => {
           createTablesFromEntities();
         });
     });
+ 
 });
