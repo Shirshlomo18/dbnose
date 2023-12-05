@@ -1,11 +1,4 @@
 const { connect, queryAsync } = require("../help");
-const sql = require("mysql");
-const connection = sql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "z10mz10m",
-  database: "DB",
-});
 
 const classroom = async (obj) => {
   console.log("obj: ", obj);

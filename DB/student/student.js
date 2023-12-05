@@ -1,11 +1,4 @@
 const { connect, queryAsync } = require("../help");
-// const sql = require("mysql");
-// const connection = sql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "z10mz10m",
-//   database: "DB",
-// });
 
 const Student = async (obj) => {
   console.log("obj: ", obj);
@@ -35,4 +28,18 @@ const Student = async (obj) => {
   }
 };
 
-module.exports = Student;
+const getStudent = async () => {
+  try {
+    await connect(); // Wait for the connection to be established
+
+    // Insert into the admin table
+    const result = await queryAsync(`SELECT * FROM student`, [obj.name]);
+    console.log("result: ", result);
+    return result;
+  } catch (err) {
+    console.error("Error in Student function:", err);
+    return { err };
+  }
+};
+
+module.exports = { Student: getStudent, getStudent: getStudent };
