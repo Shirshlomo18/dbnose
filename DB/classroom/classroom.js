@@ -1,24 +1,40 @@
-
-const sql = require('mysql');
-const fs = require('fs');
+const {connect,queryAsync}=require('../help')
+const sql = require("mysql");
 const connection = sql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'z10mz10m',
-    database:'DB'
+  host: "localhost",
+  user: "root",
+  password: "z10mz10m",
+  database: "DB",
 });
 
-const Classroom= (obj)=>{
-connection.connect((err)=>{
-    const parsedObj=JSON.parse(obj);
-    if(err){
-        console.log('err in connection'.err)
-    }
-    const insertInto =`INSERT INTO classroom (grade,class_index,teacher_id) VALUES ${parsedObj.grade,parsedObj.class_index,parsedObj.teacher_id}`
+const classroom = async (obj) => {
+  console.log("obj: ", obj);
+  console.log("Classroom");
 
-connection.query(insertInto, (err) => {
-    if (err) throw err;
-    console.log('insert succsesfully')
+  try {
+    await connect(); // Wait for the connection to be established
 
-})
-})}
+    // Insert into the admin table
+    await queryAsync(
+      `INSERT INTO classroom (grade, class_index, teacher_id) VALUES (?, ?, ?)`,
+      [obj.grade, obj.class_index, obj.teacher_id]
+    );
+
+    console.log("insert successfully");
+
+    // Select from the admin table
+    const result = await queryAsync(`SELECT * FROM classroom WHERE name = ?`, [
+      obj.grade,
+    ]);
+
+    console.log("result: ", result);
+    return result;
+  } catch (err) {
+    console.error("Error in Classroom function:", err);
+    return { err };
+  }
+};
+
+
+
+module.exports = classroom;
