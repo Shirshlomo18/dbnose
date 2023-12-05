@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const addStudent = () => {};
+const Admin = require("../../DB/");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
