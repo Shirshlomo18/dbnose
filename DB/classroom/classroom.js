@@ -1,4 +1,4 @@
-const {connect,queryAsync}=require('../help')
+const { connect, queryAsync } = require("../help");
 const sql = require("mysql");
 const connection = sql.createConnection({
   host: "localhost",
@@ -23,7 +23,7 @@ const classroom = async (obj) => {
     console.log("insert successfully");
 
     // Select from the admin table
-    const result = await queryAsync(`SELECT * FROM classroom WHERE name = ?`, [
+    const result = await queryAsync(`SELECT * FROM classroom WHERE grade = ?`, [
       obj.grade,
     ]);
 
@@ -34,7 +34,5 @@ const classroom = async (obj) => {
     return { err };
   }
 };
-
-
 
 module.exports = classroom;

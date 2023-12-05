@@ -5,7 +5,7 @@ const Admin = require("../../DB/admin/admin");
 const Student = require("../../DB/student/student");
 const Classroom = require("../../DB/classroom/classroom");
 const Teacher = require("../../DB/teacher/teacher");
-const School = require("../../DB/school/school");
+const School = require("../../DB/school/school.js");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
