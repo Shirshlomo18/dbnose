@@ -2,5 +2,6 @@
     "id":"INT PRIMARY KEY AUTO_INCREMENT",
     "name":"VARCHAR(255)",
     "password":"VARCHAR(255)",
-    "classromm_id":"INT REFERENCES classroom(id)"
+    "classroom_id":"INT,FOREIGN KEY (classroom_id) REFERENCES classroom(id)"
+    
 }

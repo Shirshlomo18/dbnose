@@ -1,6 +1,6 @@
 {
-    "id":"INT PRIMARY KEY AUTO_INCREMENT",
-    "grade":"CHAR",
-    "index":"INT AUTO_INCREMENT",
-    "teacher_id":"INT REFERENCES teacher(id)"
+    "id": "INT PRIMARY KEY AUTO_INCREMENT",
+    "grade": "CHAR",
+    "class_index": "INT",
+    "teacher_id": "INT, FOREIGN KEY (teacher_id) REFERENCES teacher(id)"
 }
