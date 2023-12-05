@@ -1,3 +1,4 @@
+
 // const sql = require('mysql');
 // const fs = require('fs');
 // const connection = sql.createConnection({
@@ -7,13 +8,13 @@
 //     database:'DB'
 // });
 
-// const School= (obj)=>{
+// const Teacher= (obj)=>{
 // connection.connect((err)=>{
 //     const parsedObj=JSON.parse(obj);
 //     if(err){
 //         console.log('err in connection'.err)
 //     }
-//     const insertInto =`INSERT INTO admin (name,school_code) VALUES ${parsedObj.name,parsedObj.school_code}`
+//     const insertInto =`INSERT INTO teacher (name,password,email) VALUES ${parsedObj.name,parsedObj.password,parsedObj.email}`
 
 // connection.query(insertInto, (err) => {
 //     if (err) throw err;
@@ -31,34 +32,34 @@ const connection = sql.createConnection({
   database: "DB",
 });
 
-const Admin = async (obj) => {
+const Teacher = async (obj) => {
   console.log("obj: ", obj);
-  console.log("School");
+  console.log("Teacher");
 
   try {
     await connect(); // Wait for the connection to be established
 
     // Insert into the admin table
     await queryAsync(
-      `INSERT INTO school (name, school_code) VALUES (?, ?)`,
-      [obj.name,obj.school_code]
+      `INSERT INTO teacher (name, password, email) VALUES (?, ?, ?)`,
+      [obj.name, obj.password, obj.email]
     );
 
     console.log("insert successfully");
 
     // Select from the admin table
-    const result = await queryAsync(`SELECT * FROM school WHERE name = ?`, [
+    const result = await queryAsync(`SELECT * FROM teacher WHERE name = ?`, [
       obj.name,
     ]);
 
     console.log("result: ", result);
     return result;
   } catch (err) {
-    console.error("Error in School function:", err);
+    console.error("Error in Teacher function:", err);
     return { err };
   }
 };
 
 
 
-module.exports = School;
+module.exports = Teacher;
